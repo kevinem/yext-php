@@ -45,6 +45,16 @@ class Yext
     protected $httpClient;
 
     /**
+     * @var YextAdministrative
+     */
+    protected $administrative;
+
+    /**
+     * @var YextUser
+     */
+    protected $user;
+
+    /**
      * Yext constructor.
      * @param array $options
      */
@@ -61,6 +71,10 @@ class Yext
         $this->setHttpClient(new Client([
             'base_uri' => $this->getBaseUrl()
         ]));
+
+        $this->administrative = new YextAdministrative($this);
+
+        $this->user = new YextUser($this);
     }
 
     /**
@@ -193,6 +207,22 @@ class Yext
     public function sendRequest(RequestInterface $request)
     {
         return $this->getHttpClient()->send($request);
+    }
+
+    /**
+     * @return YextAdministrative
+     */
+    public function administrative()
+    {
+        return $this->administrative;
+    }
+
+    /**
+     * @return YextUser
+     */
+    public function user()
+    {
+        return $this->user;
     }
 
     /**

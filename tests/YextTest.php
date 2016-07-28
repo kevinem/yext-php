@@ -161,4 +161,14 @@ class YextTest extends \PHPUnit_Framework_TestCase
         $this->client->shouldReceive('send')->with($this->request)->andReturn();
         $this->yext->sendRequest($this->request);
     }
+
+    public function testAdministrativeNotNull()
+    {
+        $this->assertNotNull($this->yext->administrative());
+    }
+
+    public function testUserNotNull()
+    {
+        $this->assertNotNull($this->yext->user());
+    }
 }
