@@ -34,6 +34,6 @@ class YextUser
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl('healthy'));
 
-        return $this->yext->sendRequest($request);
+        return $this->yext->getResponse($request);
     }
 }

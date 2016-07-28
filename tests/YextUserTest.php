@@ -48,7 +48,7 @@ class YextUserTest extends \PHPUnit_Framework_TestCase
     public function testGetHealthCheck()
     {
         $this->yext->shouldReceive('createRequest')->with('GET', 'mock_base_url/mock_version/healthy')->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextUser->getHealthCheck();
         $this->assertEquals($res, 'mock_response');
     }

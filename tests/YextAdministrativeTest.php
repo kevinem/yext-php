@@ -50,7 +50,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getAllCustomers();
         $this->assertEquals($res, 'mock_response');
     }
@@ -66,7 +66,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
                 ],
                 'body'    => json_encode($customer)
             ])->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->createCustomer($customer);
         $this->assertEquals($res, 'mock_response');
     }
@@ -76,7 +76,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomer('mock_customer_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -92,7 +92,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
                 ],
                 'body'    => json_encode($update)
             ])->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->updateCustomer('mock_customer_id', $update);
         $this->assertEquals($res, 'mock_response');
     }
@@ -102,7 +102,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customerAttributes')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerAttributes();
         $this->assertEquals($res, 'mock_response');
     }
@@ -112,7 +112,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/offers')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getAvailableOffers();
         $this->assertEquals($res, 'mock_response');
     }
@@ -122,7 +122,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/offers/mock_offer_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getAvailableOffer('mock_offer_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -132,7 +132,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/orders')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getOrders();
         $this->assertEquals($res, 'mock_response');
     }
@@ -142,7 +142,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/orders/mock_order_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getOrder('mock_order_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -152,7 +152,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id/subscriptions')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerSubscriptions('mock_customer_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -168,7 +168,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
                 ],
                 'body'    => json_encode($subscription)
             ])->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->createCustomerSubscription('mock_customer_id', $subscription);
         $this->assertEquals($res, 'mock_response');
     }
@@ -178,7 +178,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id/subscriptions/mock_subscription_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerSubscription('mock_customer_id', 'mock_subscription_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -195,7 +195,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
                 'body'    => json_encode($update)
             ])
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative
             ->updateCustomerSubscription('mock_customer_id', 'mock_subscription_id', $update);
         $this->assertEquals($res, 'mock_response');
@@ -207,7 +207,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
             ->with('PUT',
                 'mock_base_url/mock_version/customers/mock_customer_id/subscriptions/mock_subscription_id/locations/mock_location_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative
             ->addLocationToCustomerSubscription('mock_customer_id', 'mock_subscription_id', 'mock_location_id');
         $this->assertEquals($res, 'mock_response');
@@ -219,7 +219,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
             ->with('DELETE',
                 'mock_base_url/mock_version/customers/mock_customer_id/subscriptions/mock_subscription_id/locations/mock_location_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative
             ->removeLocationFromCustomerSubscription('mock_customer_id', 'mock_subscription_id', 'mock_location_id');
         $this->assertEquals($res, 'mock_response');
@@ -230,7 +230,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/optimizationTasks')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getOptimizationTasks();
         $this->assertEquals($res, 'mock_response');
     }
@@ -240,7 +240,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id/optimizations')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerOptimizations('mock_customer_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -250,7 +250,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id/optimizations/mock_optimization_id')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerOptimization('mock_customer_id', 'mock_optimization_id');
         $this->assertEquals($res, 'mock_response');
     }
@@ -267,7 +267,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
                 'body'    => json_encode($update)
             ])
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative
             ->updateCustomerOptimization('mock_customer_id', 'mock_optimization_id', $update);
         $this->assertEquals($res, 'mock_response');
@@ -278,7 +278,7 @@ class YextAdministrativeTest extends \PHPUnit_Framework_TestCase
         $this->yext->shouldReceive('createRequest')
             ->with('GET', 'mock_base_url/mock_version/customers/mock_customer_id/optimizations/mock_optimization_id/link')
             ->andReturn($this->request);
-        $this->yext->shouldReceive('sendRequest')->with($this->request)->andReturn('mock_response');
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextAdministrative->getCustomerOptimizationLink('mock_customer_id', 'mock_optimization_id');
         $this->assertEquals($res, 'mock_response');
     }
