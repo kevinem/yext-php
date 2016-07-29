@@ -55,6 +55,11 @@ class Yext
     protected $user;
 
     /**
+     * @var YextLocationManager
+     */
+    protected $locationManager;
+
+    /**
      * Yext constructor.
      * @param array $options
      */
@@ -75,6 +80,8 @@ class Yext
         $this->administrative = new YextAdministrative($this);
 
         $this->user = new YextUser($this);
+
+        $this->locationManager = new YextLocationManager($this);
     }
 
     /**
@@ -229,6 +236,14 @@ class Yext
     public function user()
     {
         return $this->user;
+    }
+
+    /**
+     * @return YextLocationManager
+     */
+    public function locationManager()
+    {
+        return $this->locationManager;
     }
 
     /**

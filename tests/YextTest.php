@@ -172,6 +172,11 @@ class YextTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($this->yext->user());
     }
 
+    public function testLocationManagerNotNull()
+    {
+        $this->assertNotNull($this->yext->locationManager());
+    }
+
     public function testBuildUrl()
     {
         $query = [
@@ -180,6 +185,7 @@ class YextTest extends \PHPUnit_Framework_TestCase
         ];
 
         $res = $this->yext->buildUrl('mock_path', $query);
-        $this->assertEquals($res, 'https://api-sandbox.yext.com/v1/mock_path?api_key=mock_api_key&mock_query=mock_value&mock_query2=mock_value2');
+        $this->assertEquals($res,
+            'https://api-sandbox.yext.com/v1/mock_path?api_key=mock_api_key&mock_query=mock_value&mock_query2=mock_value2');
     }
 }
