@@ -119,4 +119,88 @@ class YextLocationManager
 
         return $this->yext->getResponse($request);
     }
+
+    /**
+     * @param $customerId
+     * @return mixed
+     */
+    public function getCustomerContentLists($customerId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/lists");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @param $customerId
+     * @param $list
+     * @return mixed
+     */
+    public function createCustomerContentList($customerId, $list)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/lists");
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($list)
+        ];
+
+        $request = $this->yext->createRequest('POST', $url, $options);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @param $customerId
+     * @param $listId
+     * @return mixed
+     */
+    public function getCustomerContentList($customerId, $listId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/lists/$listId");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @param $customerId
+     * @param $listId
+     * @param $update
+     * @return mixed
+     */
+    public function updateCustomerContentList($customerId, $listId, $update)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/lists");
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $request = $this->yext->createRequest('PUT', $url, $options);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @param $customerId
+     * @param $listId
+     * @return mixed
+     */
+    public function deleteCustomerContentList($customerId, $listId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/lists/$listId");
+
+        $request = $this->yext->createRequest('DELETE', $url);
+
+        return $this->yext->getResponse($request);
+    }
 }

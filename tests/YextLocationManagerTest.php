@@ -111,4 +111,62 @@ class YextLocationManagerTest extends \PHPUnit_Framework_TestCase
         $res = $this->yextLocationManager->getCustomerFolders('mock_customer_id');
         $this->assertEquals($res, 'mock_response');
     }
+
+    public function testGetCustomerContentLists()
+    {
+        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_url')->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->getCustomerContentLists('mock_customer_id');
+        $this->assertEquals($res, 'mock_response');
+    }
+
+    public function testCreateCustomerContentList()
+    {
+        $list = ['mock_field' => 'mock_data'];
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($list)
+        ];
+
+        $this->yext->shouldReceive('createRequest')->with('POST', 'mock_url', $options)->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->createCustomerContentList('mock_customer_id', $list);
+        $this->assertEquals($res, 'mock_response');
+    }
+
+    public function testGetCustomerContentList()
+    {
+        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_url')->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->getCustomerContentList('mock_customer_id', 'mock_list_id');
+        $this->assertEquals($res, 'mock_response');
+    }
+
+    public function testUpdateCustomerContentList()
+    {
+        $update = ['mock_field' => 'mock_data'];
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $this->yext->shouldReceive('createRequest')->with('PUT', 'mock_url', $options)->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->updateCustomerContentList('mock_customer_id', 'mock_list_id', $update);
+        $this->assertEquals($res, 'mock_response');
+    }
+
+    public function testDeleteCustomerContentList()
+    {
+        $this->yext->shouldReceive('createRequest')->with('DELETE', 'mock_url')->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->deleteCustomerContentList('mock_customer_id', 'mock_list_id');
+        $this->assertEquals($res, 'mock_response');
+    }
 }
