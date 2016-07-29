@@ -169,4 +169,29 @@ class YextLocationManagerTest extends \PHPUnit_Framework_TestCase
         $res = $this->yextLocationManager->deleteCustomerContentList('mock_customer_id', 'mock_list_id');
         $this->assertEquals($res, 'mock_response');
     }
+
+    public function testGetCustomerContentListLabels()
+    {
+        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_url')->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->getCustomerContentListLabels('mock_customer_id');
+        $this->assertEquals($res, 'mock_response');
+    }
+
+    public function testUpdateCustomerContentListLabels()
+    {
+        $update = ['mock_field' => 'mock_data'];
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $this->yext->shouldReceive('createRequest')->with('PUT', 'mock_url', $options)->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->updateCustomerContentListLabels('mock_customer_id', $update);
+        $this->assertEquals($res, 'mock_response');
+    }
 }

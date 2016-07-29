@@ -203,4 +203,38 @@ class YextLocationManager
 
         return $this->yext->getResponse($request);
     }
+
+    /**
+     * @param $customerId
+     * @return mixed
+     */
+    public function getCustomerContentListLabels($customerId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/listLabels");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @param $customerId
+     * @param $update
+     * @return mixed
+     */
+    public function updateCustomerContentListLabels($customerId, $update)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/listLabels");
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $request = $this->yext->createRequest('PUT', $url, $options);
+
+        return $this->yext->getResponse($request);
+    }
 }
