@@ -94,4 +94,16 @@ class YextLocationManager
 
         return $this->yext->getResponse($request);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBusinessCategories()
+    {
+        $url = $this->yext->buildUrl("categories");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
 }

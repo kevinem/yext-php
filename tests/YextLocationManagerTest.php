@@ -95,4 +95,12 @@ class YextLocationManagerTest extends \PHPUnit_Framework_TestCase
         $res = $this->yextLocationManager->updateCustomerLocation('mock_customer_id', 'mock_location_id', $update);
         $this->assertEquals($res, 'mock_response');
     }
+
+    public function testGetBusinessCategories()
+    {
+        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_url')->andReturn($this->request);
+        $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
+        $res = $this->yextLocationManager->getBusinessCategories();
+        $this->assertEquals($res, 'mock_response');
+    }
 }
