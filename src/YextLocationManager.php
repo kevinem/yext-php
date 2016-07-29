@@ -106,4 +106,17 @@ class YextLocationManager
 
         return $this->yext->getResponse($request);
     }
+
+    /**
+     * @param $customerId
+     * @return mixed
+     */
+    public function getCustomerFolders($customerId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/folders");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
 }
