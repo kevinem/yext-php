@@ -171,4 +171,15 @@ class YextTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertNotNull($this->yext->user());
     }
+
+    public function testBuildUrl()
+    {
+        $query = [
+            'mock_query'  => 'mock_value',
+            'mock_query2' => 'mock_value2'
+        ];
+
+        $res = $this->yext->buildUrl('mock_path', $query);
+        $this->assertEquals($res, 'https://api-sandbox.yext.com/v1/mock_path?api_key=mock_api_key&mock_query=mock_value&mock_query2=mock_value2');
+    }
 }

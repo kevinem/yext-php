@@ -39,6 +39,7 @@ class YextUserTest extends \PHPUnit_Framework_TestCase
         $this->request = m::mock(RequestInterface::class);
 
         $this->yext = m::mock(Yext::class);
+        $this->yext->shouldReceive('buildUrl')->andReturn('mock_url');
         $this->yext->shouldReceive('getBaseUrl')->andReturn('mock_base_url');
         $this->yext->shouldReceive('getVersion')->andReturn('mock_version');
 
@@ -47,7 +48,7 @@ class YextUserTest extends \PHPUnit_Framework_TestCase
 
     public function testGetHealthCheck()
     {
-        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_base_url/mock_version/healthy')->andReturn($this->request);
+        $this->yext->shouldReceive('createRequest')->with('GET', 'mock_url')->andReturn($this->request);
         $this->yext->shouldReceive('getResponse')->with($this->request)->andReturn('mock_response');
         $res = $this->yextUser->getHealthCheck();
         $this->assertEquals($res, 'mock_response');

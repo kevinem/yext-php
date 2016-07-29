@@ -22,20 +22,14 @@ class YextAdministrative
     }
 
     /**
-     * @param $path
-     * @return string
-     */
-    protected function buildUrl($path)
-    {
-        return $this->yext->getBaseUrl() . '/' . $this->yext->getVersion() . '/' . $path;
-    }
-
-    /**
+     * @param array $query
      * @return mixed
      */
-    public function getCustomers()
+    public function getCustomers(array $query = [])
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("customers"));
+        $url = $this->yext->buildUrl("customers", $query);
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -46,12 +40,16 @@ class YextAdministrative
      */
     public function createCustomer($customer)
     {
-        $request = $this->yext->createRequest('POST', $this->buildUrl('customers'), [
+        $url = $this->yext->buildUrl("customers");
+
+        $options = [
             'headers' => [
                 'Content-Type' => 'application/json'
             ],
             'body'    => json_encode($customer)
-        ]);
+        ];
+
+        $request = $this->yext->createRequest('POST', $url, $options);
 
         return $this->yext->getResponse($request);
     }
@@ -62,7 +60,9 @@ class YextAdministrative
      */
     public function getCustomer($customerId)
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId"));
+        $url = $this->yext->buildUrl("customers/$customerId");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -74,12 +74,16 @@ class YextAdministrative
      */
     public function updateCustomer($customerId, $update)
     {
-        $request = $this->yext->createRequest('PUT', $this->buildUrl("customers/$customerId"), [
+        $url = $this->yext->buildUrl("customers/$customerId");
+
+        $options = [
             'headers' => [
                 'Content-Type' => 'application/json'
             ],
             'body'    => json_encode($update)
-        ]);
+        ];
+
+        $request = $this->yext->createRequest('PUT', $url, $options);
 
         return $this->yext->getResponse($request);
     }
@@ -89,7 +93,9 @@ class YextAdministrative
      */
     public function getCustomerAttributes()
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("customerAttributes"));
+        $url = $this->yext->buildUrl("customerAttributes");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -99,7 +105,9 @@ class YextAdministrative
      */
     public function getAvailableOffers()
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("offers"));
+        $url = $this->yext->buildUrl("offers");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -110,17 +118,22 @@ class YextAdministrative
      */
     public function getAvailableOffer($offerId)
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("offers/$offerId"));
+        $url = $this->yext->buildUrl("offers/$offerId");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
 
     /**
+     * @param array $query
      * @return mixed
      */
-    public function getOrders()
+    public function getOrders(array $query = [])
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("orders"));
+        $url = $this->yext->buildUrl("orders", $query);
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -131,7 +144,9 @@ class YextAdministrative
      */
     public function getOrder($orderId)
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("orders/$orderId"));
+        $url = $this->yext->buildUrl("orders/$orderId");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -142,7 +157,9 @@ class YextAdministrative
      */
     public function getCustomerSubscriptions($customerId)
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId/subscriptions"));
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -154,12 +171,16 @@ class YextAdministrative
      */
     public function createCustomerSubscription($customerId, $subscription)
     {
-        $request = $this->yext->createRequest('POST', $this->buildUrl("customers/$customerId/subscriptions"), [
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions");
+
+        $options = [
             'headers' => [
                 'Content-Type' => 'application/json'
             ],
             'body'    => json_encode($subscription)
-        ]);
+        ];
+
+        $request = $this->yext->createRequest('POST', $url, $options);
 
         return $this->yext->getResponse($request);
     }
@@ -171,8 +192,9 @@ class YextAdministrative
      */
     public function getCustomerSubscription($customerId, $subscriptionId)
     {
-        $request = $this->yext->createRequest('GET',
-            $this->buildUrl("customers/$customerId/subscriptions/$subscriptionId"));
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions/$subscriptionId");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -185,13 +207,16 @@ class YextAdministrative
      */
     public function updateCustomerSubscription($customerId, $subscriptionId, $update)
     {
-        $request = $this->yext->createRequest('PUT',
-            $this->buildUrl("customers/$customerId/subscriptions/$subscriptionId"), [
-                'headers' => [
-                    'Content-Type' => 'application/json'
-                ],
-                'body'    => json_encode($update)
-            ]);
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions/$subscriptionId");
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $request = $this->yext->createRequest('PUT', $url, $options);
 
         return $this->yext->getResponse($request);
     }
@@ -204,8 +229,9 @@ class YextAdministrative
      */
     public function addLocationToCustomerSubscription($customerId, $subscriptionId, $locationId)
     {
-        $request = $this->yext->createRequest('PUT',
-            $this->buildUrl("customers/$customerId/subscriptions/$subscriptionId/locations/$locationId"));
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions/$subscriptionId/locations/$locationId");
+
+        $request = $this->yext->createRequest('PUT', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -218,8 +244,9 @@ class YextAdministrative
      */
     public function removeLocationFromCustomerSubscription($customerId, $subscriptionId, $locationId)
     {
-        $request = $this->yext->createRequest('DELETE',
-            $this->buildUrl("customers/$customerId/subscriptions/$subscriptionId/locations/$locationId"));
+        $url = $this->yext->buildUrl("customers/$customerId/subscriptions/$subscriptionId/locations/$locationId");
+
+        $request = $this->yext->createRequest('DELETE', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -229,7 +256,9 @@ class YextAdministrative
      */
     public function getOptimizationTasks()
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("optimizationTasks"));
+        $url = $this->yext->buildUrl("optimizationTasks");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -240,7 +269,9 @@ class YextAdministrative
      */
     public function getCustomerOptimizations($customerId)
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId/optimizations"));
+        $url = $this->yext->buildUrl("customers/$customerId/optimizations");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -252,8 +283,9 @@ class YextAdministrative
      */
     public function getCustomerOptimization($customerId, $optimizationId)
     {
-        $request = $this->yext->createRequest('GET',
-            $this->buildUrl("customers/$customerId/optimizations/$optimizationId"));
+        $url = $this->yext->buildUrl("customers/$customerId/optimizations/$optimizationId");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }
@@ -266,13 +298,16 @@ class YextAdministrative
      */
     public function updateCustomerOptimization($customerId, $optimizationId, $update)
     {
-        $request = $this->yext->createRequest('PUT',
-            $this->buildUrl("customers/$customerId/optimizations/$optimizationId"), [
-                'headers' => [
-                    'Content-Type' => 'application/json'
-                ],
-                'body'    => json_encode($update)
-            ]);
+        $url = $this->yext->buildUrl("customers/$customerId/optimizations/$optimizationId");
+
+        $options = [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ],
+            'body'    => json_encode($update)
+        ];
+
+        $request = $this->yext->createRequest('PUT', $url, $options);
 
         return $this->yext->getResponse($request);
     }
@@ -284,8 +319,9 @@ class YextAdministrative
      */
     public function getCustomerOptimizationLink($customerId, $optimizationId)
     {
-        $request = $this->yext->createRequest('GET',
-            $this->buildUrl("customers/$customerId/optimizations/$optimizationId/link"));
+        $url = $this->yext->buildUrl("customers/$customerId/optimizations/$optimizationId/link");
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }

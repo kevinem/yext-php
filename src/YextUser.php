@@ -26,20 +26,13 @@ class YextUser
     }
 
     /**
-     * @param $path
-     * @return string
-     */
-    protected function buildUrl($path)
-    {
-        return $this->yext->getBaseUrl() . '/' . $this->yext->getVersion() . '/' . $path;
-    }
-
-    /**
      * @return mixed
      */
     public function getHealthCheck()
     {
-        $request = $this->yext->createRequest('GET', $this->buildUrl('healthy'));
+        $url = $this->yext->buildUrl('healthy');
+
+        $request = $this->yext->createRequest('GET', $url);
 
         return $this->yext->getResponse($request);
     }

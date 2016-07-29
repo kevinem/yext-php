@@ -176,6 +176,18 @@ class Yext
     }
 
     /**
+     * @param $path
+     * @param array $query
+     * @return string
+     */
+    public function buildUrl($path, array $query = [])
+    {
+        $params = \GuzzleHttp\Psr7\build_query(array_merge(['api_key' => $this->getApiKey()], $query));
+
+        return $this->getBaseUrl() . '/' . $this->getVersion() . '/' . $path . "?$params";
+    }
+
+    /**
      * Creates a PSR-7 request instance.
      *
      * @param string $method
@@ -185,17 +197,11 @@ class Yext
      */
     public function createRequest($method, $url, array $options = [])
     {
-        $requestUrl = $url;
-
-        if (isset($this->apiKey)) {
-            $requestUrl .= "?api_key=" . $this->getApiKey();
-        }
-
         $headers = isset($options['headers']) ? $options['headers'] : [];
 
         $body = isset($options['body']) ? $options['body'] : null;
 
-        return new Request($method, $requestUrl, $headers, $body);
+        return new Request($method, $url, $headers, $body);
     }
 
     /**
