@@ -65,6 +65,11 @@ class Yext
     protected $listings;
 
     /**
+     * @var YextAnalytics
+     */
+    protected $analytics;
+
+    /**
      * Yext constructor.
      * @param array $options
      */
@@ -89,6 +94,8 @@ class Yext
         $this->locationManager = new YextLocationManager($this);
 
         $this->listings = new YextListings($this);
+
+        $this->analytics = new YextAnalytics($this);
     }
 
     /**
@@ -259,6 +266,14 @@ class Yext
     public function listings()
     {
         return $this->listings;
+    }
+
+    /**
+     * @return YextAnalytics
+     */
+    public function analytics()
+    {
+        return $this->analytics;
     }
 
     /**

@@ -182,6 +182,11 @@ class YextTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($this->yext->listings());
     }
 
+    public function testAnalyticsNotNull()
+    {
+        $this->assertNotNull($this->yext->analytics());
+    }
+
     public function testBuildUrl()
     {
         $query = [
