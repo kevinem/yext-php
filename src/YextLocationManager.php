@@ -237,4 +237,29 @@ class YextLocationManager
 
         return $this->yext->getResponse($request);
     }
+
+    /**
+     * @param $customerId
+     * @return mixed
+     */
+    public function getCustomerCustomFields($customerId)
+    {
+        $url = $this->yext->buildUrl("customers/$customerId/customFields");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleAttributes()
+    {
+        $url = $this->yext->buildUrl("googleKeywords");
+
+        $request = $this->yext->createRequest('GET', $url);
+
+        return $this->yext->getResponse($request);
+    }
 }
