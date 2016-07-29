@@ -21,18 +21,29 @@ class YextAdministrative
         $this->yext = $yext;
     }
 
+    /**
+     * @param $path
+     * @return string
+     */
     protected function buildUrl($path)
     {
         return $this->yext->getBaseUrl() . '/' . $this->yext->getVersion() . '/' . $path;
     }
 
-    public function getAllCustomers()
+    /**
+     * @return mixed
+     */
+    public function getCustomers()
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("customers"));
 
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customer
+     * @return mixed
+     */
     public function createCustomer($customer)
     {
         $request = $this->yext->createRequest('POST', $this->buildUrl('customers'), [
@@ -45,6 +56,10 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @return mixed
+     */
     public function getCustomer($customerId)
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId"));
@@ -52,6 +67,11 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $update
+     * @return mixed
+     */
     public function updateCustomer($customerId, $update)
     {
         $request = $this->yext->createRequest('PUT', $this->buildUrl("customers/$customerId"), [
@@ -64,6 +84,9 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @return mixed
+     */
     public function getCustomerAttributes()
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("customerAttributes"));
@@ -71,6 +94,9 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @return mixed
+     */
     public function getAvailableOffers()
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("offers"));
@@ -78,6 +104,10 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $offerId
+     * @return mixed
+     */
     public function getAvailableOffer($offerId)
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("offers/$offerId"));
@@ -85,6 +115,9 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @return mixed
+     */
     public function getOrders()
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("orders"));
@@ -92,6 +125,10 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $orderId
+     * @return mixed
+     */
     public function getOrder($orderId)
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("orders/$orderId"));
@@ -99,6 +136,10 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @return mixed
+     */
     public function getCustomerSubscriptions($customerId)
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId/subscriptions"));
@@ -106,6 +147,11 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $subscription
+     * @return mixed
+     */
     public function createCustomerSubscription($customerId, $subscription)
     {
         $request = $this->yext->createRequest('POST', $this->buildUrl("customers/$customerId/subscriptions"), [
@@ -118,6 +164,11 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $subscriptionId
+     * @return mixed
+     */
     public function getCustomerSubscription($customerId, $subscriptionId)
     {
         $request = $this->yext->createRequest('GET',
@@ -126,6 +177,12 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $subscriptionId
+     * @param $update
+     * @return mixed
+     */
     public function updateCustomerSubscription($customerId, $subscriptionId, $update)
     {
         $request = $this->yext->createRequest('PUT',
@@ -139,6 +196,12 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $subscriptionId
+     * @param $locationId
+     * @return mixed
+     */
     public function addLocationToCustomerSubscription($customerId, $subscriptionId, $locationId)
     {
         $request = $this->yext->createRequest('PUT',
@@ -147,6 +210,12 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $subscriptionId
+     * @param $locationId
+     * @return mixed
+     */
     public function removeLocationFromCustomerSubscription($customerId, $subscriptionId, $locationId)
     {
         $request = $this->yext->createRequest('DELETE',
@@ -155,6 +224,9 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @return mixed
+     */
     public function getOptimizationTasks()
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("optimizationTasks"));
@@ -162,6 +234,10 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @return mixed
+     */
     public function getCustomerOptimizations($customerId)
     {
         $request = $this->yext->createRequest('GET', $this->buildUrl("customers/$customerId/optimizations"));
@@ -169,6 +245,11 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $optimizationId
+     * @return mixed
+     */
     public function getCustomerOptimization($customerId, $optimizationId)
     {
         $request = $this->yext->createRequest('GET',
@@ -177,6 +258,12 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $optimizationId
+     * @param $update
+     * @return mixed
+     */
     public function updateCustomerOptimization($customerId, $optimizationId, $update)
     {
         $request = $this->yext->createRequest('PUT',
@@ -190,6 +277,11 @@ class YextAdministrative
         return $this->yext->getResponse($request);
     }
 
+    /**
+     * @param $customerId
+     * @param $optimizationId
+     * @return mixed
+     */
     public function getCustomerOptimizationLink($customerId, $optimizationId)
     {
         $request = $this->yext->createRequest('GET',
