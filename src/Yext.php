@@ -70,6 +70,11 @@ class Yext
     protected $analytics;
 
     /**
+     * @var YextSocial
+     */
+    protected $social;
+
+    /**
      * Yext constructor.
      * @param array $options
      */
@@ -96,6 +101,8 @@ class Yext
         $this->listings = new YextListings($this);
 
         $this->analytics = new YextAnalytics($this);
+
+        $this->social = new YextSocial($this);
     }
 
     /**
@@ -274,6 +281,14 @@ class Yext
     public function analytics()
     {
         return $this->analytics;
+    }
+
+    /**
+     * @return YextSocial
+     */
+    public function social()
+    {
+        return $this->social;
     }
 
     /**
